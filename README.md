@@ -16,17 +16,18 @@
 # Deploying to local ganache
 ```
 1. git clone 
-2. cd <repo>
+2. cd <repo> && npm install --save
 3. truffle compile
-4. truffle migrate --network dev
+4. truffle migrate --network dev 0r truffle migrate --network dev --reset
 4. npx 
 ```
 
 
 # Deploying to local ROPSTEN NETWORK
 ```
+0. IMP to note make sure account 0 is funded with test ether.
 1. git clone 
-2. cd <repo>
+2. cd <repo> && npm install --save
 3. truffle compile
 4. npx truffle console --network ropsten
 5. truffle(ropsten)> web3.eth.getBalance(accounts[0]) 
@@ -36,10 +37,10 @@
 ```
 
 
-npx mnemonics
+<!-- npx mnemonics
 npx truffle console --network ropsten
 accounts
-web3.eth.getBalance(accounts[0])
+web3.eth.getBalance(accounts[0]) -->
 
 
 # ROPSTEN NETWORK
