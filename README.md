@@ -25,7 +25,7 @@
 
 # Deploying to local ROPSTEN NETWORK
 ```
-0. IMP to note make sure account 0 is funded with test ether.
+0. IMP to note make sure account 0 is funded with test ether & in .env change the BLOCKCHAIN_URL to ROPSTEN
 1. git clone 
 2. cd <repo> && npm install --save
 3. truffle compile
@@ -70,12 +70,36 @@ truffle(ropsten)>
 ================================================================
 ```
 
-# ROPSTEN NETWORK
+# ROPSTEN NETWORK to check details on | transaction | tokens | contract 
 ```
 https://ropsten.etherscan.io/address/0x237a3B44F00265993216FdD6d3DDf5e29B085C2A
 https://ropsten.etherscan.io/address/0xC837100d9809322Bc8b1D4167a8f000F1F0c9c96
 
 ```
+
+# Smart Contract interaction
+```
+http:\\localhost:9000\hello
+
+Output as shown below
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization
+Content-Type: application/json; charset=utf-8
+Content-Length: 36
+ETag: W/"24-yBabfZF1nE2M7uuXaWiPp1tiARA"
+Date: Fri, 18 Feb 2022 09:27:56 GMT
+Connection: close
+
+{
+  "message": {
+    "result": "hello world"
+  }
+}
+
+```
+
 
 # Get test ethers from below link
 https://faucet.ropsten.be/ didnt work for me
