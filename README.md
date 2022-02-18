@@ -48,7 +48,7 @@ web3.eth.getBalance(accounts[0]) -->
 ================================================================
 MAC ROPSTEN Setup (Account 1 & 2 imported to Metamask)
 ================================================================
-λ  truffle-ropsten-dapp npx truffle console --network ropsten
+λ  truffle-ropsten-dapp git:(main) truffle console --network ropsten
 truffle(ropsten)> accounts
 [
   '0x237a3B44F00265993216FdD6d3DDf5e29B085C2A',
@@ -63,7 +63,10 @@ truffle(ropsten)> accounts
   '0xE054A6e8578cC9648FBd763FBB31D7B6B378FeE5'
 ]
 truffle(ropsten)> web3.eth.getBalance(accounts[0])
-'0'
+'198850192004071963'
+truffle(ropsten)> web3.eth.getBalance(accounts[1])
+'1200000000000000000'
+truffle(ropsten)> 
 ================================================================
 ```
 
