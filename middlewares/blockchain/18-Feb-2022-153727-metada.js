@@ -1,0 +1,2 @@
+const ADDRESS = '0x282c2f62167ae192E5B32739bA1bB7A1822d3e4e';ernalType":"string","name":"","type":"string"}],"stateMutability":"pure","type":"function","constant":true,"signature":"0xef5fb05b"}];
+module.exports = { ADDRESS, ABI };
