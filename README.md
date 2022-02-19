@@ -13,7 +13,7 @@
 3. npm install -g ganache-cli
 ```
 
-# Deploying to local ganache
+# Ganache Deployment (Local Ganche)
 ```
 1. git clone 
 2. cd <repo> && npm install --save
@@ -23,7 +23,7 @@
 ```
 
 
-# Deploying to local ROPSTEN NETWORK
+# Ropsten Deployment (Public Testnet)
 ```
 0. IMP to note make sure account 0 is funded with test ether & in .env change the BLOCKCHAIN_URL to ROPSTEN
 1. git clone 
