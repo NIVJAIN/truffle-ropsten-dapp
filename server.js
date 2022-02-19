@@ -112,8 +112,9 @@ app.get('/hello', async (req,res,next)=>{
             error: error
         })
     }
-   
 })
+
+
 
 
 // 
@@ -133,7 +134,42 @@ const getHelloWorld = async () => {
     })
   }
 
- 
+  const setMessageBlockchain = async (message) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const accounts = await web3.eth.getAccounts();
+        account = accounts[0];
+          const { setText } = instance.methods;
+          const setMessage = await setText(message).send({gas: 140000, from: account})
+          console.log("setText()", setMessage)
+          resolve({
+            result: setMessage
+          })
+      } catch (error){
+          console.log("Register:Error", error)
+          reject(error)
+      }
+    })
+  }
+
+  const getMessageBlockchain = async () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+          const { getText } = instance.methods;
+          const getMessage =  await getText().call();
+          console.log("getTextBlockchain()", getMessage)
+          resolve({
+            result: getMessage
+          })
+      } catch (error){
+          console.log("Register:Error", error)
+          reject(error)
+      }
+    })
+  }
+  getMessageBlockchain();
+//   setMessageBlockchain("Hello Blockchain");
+//   getMessageBlockchain();
   getHelloWorld();
 
 // const cron = require('./services/jobSchedular')
