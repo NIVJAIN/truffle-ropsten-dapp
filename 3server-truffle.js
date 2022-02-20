@@ -27,14 +27,13 @@ const Provider = require('./truffle-helpers/truffle-provider')
 const provider = new Provider()
 const web3 = provider.web3
 const contract = new Contract()
-const instance = contract.initContract()
+// const instance = contract.initContract()
 
 console.log("First")
 /* ====================================================
                     BLOCKCHAIN SETUP
 ======================================================*/
-// console.log(instance) 
-// console.log("Second")
+console.log("Second")
 // (async()=>{
 //     try {
 //       // console.log("Third")
@@ -57,7 +56,7 @@ console.log("First")
 const jain = async function(){
   try {
     // console.log("Third")
-    // const instance = await contract.initContract()
+    const instance = await contract.initContract()
     // console.log("fourth")
     const accounts = await web3.eth.getAccounts();
     account = accounts[0];
