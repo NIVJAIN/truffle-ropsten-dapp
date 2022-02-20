@@ -1,4 +1,7 @@
 const Web3 = require('web3')
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+const MNEMONIC = 'keen beef way never plunge like slab shove unhappy file same rely'
+const ROPSTEN_URL = "https://ropsten.infura.io/v3/49ddda8aa6f44ea9a479729898a4024f"
 
 class  Provider {
   constructor() {
@@ -6,7 +9,9 @@ class  Provider {
     try {
       this.web3 = new Web3(
         // new Web3.providers.HttpProvider('http://localhost:7545'),
-        new Web3.providers.HttpProvider(process.env.BLOCKCHAIN_URL)
+        // new Web3.providers.HttpProvider(process.env.BLOCKCHAIN_URL)
+        new HDWalletProvider(MNEMONIC,ROPSTEN_URL)
+        // new HDWalletProvider(process.env.MNEMONIC,process.env.BLOCKCHAIN_URL)
       )
     }catch (error){
       console.log("Middleware-Provider",error)
