@@ -138,3 +138,157 @@ Summary
 λ  truffle-ropsten-dapp 
 
 ```
+
+## ROPSTEN with ERC20
+```
+λ  truffle-ropsten-dapp git:(ropsten) truffle migrate --network ropsten --reset
+
+Compiling your contracts...
+===========================
+✔ Fetching solc version list from solc-bin. Attempt #1
+✔ Fetching solc version list from solc-bin. Attempt #1
+> Compiling ./contracts/ERC20Coin.sol
+> Compiling ./contracts/HelloWorld.sol
+> Compilation warnings encountered:
+
+    Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> project:/contracts/ERC20Coin.sol
+
+,Warning: SPDX license identifier not provided in source file. Before publishing, consider adding a comment containing "SPDX-License-Identifier: <SPDX-License>" to each source file. Use "SPDX-License-Identifier: UNLICENSED" for non-open-source code. Please see https://spdx.org for more information.
+--> project:/contracts/HelloWorld.sol
+
+,Warning: Source file does not specify required compiler version! Consider adding "pragma solidity ^0.8.12;"
+--> project:/contracts/HelloWorld.sol
+
+
+> Artifacts written to /Users/pinkyjain/Downloads/BLOCKCHAIN/truffle-ropsten-dapp/build/contracts
+> Compiled successfully using:
+   - solc: 0.8.12+commit.f00d7308.Emscripten.clang
+
+WARNING: Ganache forking only supports EIP-1193-compliant providers. Legacy support for send is currently enabled, but will be removed in a future version _without_ a breaking change. To remove this warning, switch to an EIP-1193 provider. This error is probably caused by an old version of Web3's HttpProvider (or ganache < v7)
+
+
+Migrations dry-run (simulation)
+===============================
+> Network name:    'ropsten-fork'
+> Network id:      3
+> Block gas limit: 8000000 (0x7a1200)
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+undefined
+   > block number:        11995503
+   > block timestamp:     1645400086
+   > account:             0x237a3B44F00265993216FdD6d3DDf5e29B085C2A
+   > balance:             5.193478955891126252
+   > gas used:            250142 (0x3d11e)
+   > gas price:           2.500000008 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000625355002001136 ETH
+
+   -------------------------------------
+   > Total cost:     0.000625355002001136 ETH
+
+
+2_deploy_contract.js
+====================
+
+   Deploying 'ERC20Coin'
+   ---------------------
+undefined
+   > block number:        11995505
+   > block timestamp:     1645400094
+   > account:             0x237a3B44F00265993216FdD6d3DDf5e29B085C2A
+   > balance:             5.189482423378337348
+   > gas used:            1552700 (0x17b13c)
+   > gas price:           2.500000008 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0038817500124216 ETH
+
+File written successfully
+
+The written has the following contents:
+   -------------------------------------
+   > Total cost:     0.0038817500124216 ETH
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.004507105014422736 ETH
+
+
+
+
+Starting migrations...
+======================
+> Network name:    'ropsten'
+> Network id:      3
+> Block gas limit: 8000000 (0x7a1200)
+
+
+1_initial_migration.js
+======================
+
+   Replacing 'Migrations'
+   ----------------------
+   ⠋ Blocks: 0            Seconds: 0   > transaction hash:    0x28f33b94410411a419d1a0cc34a7feeb0eb9a18b56c7d418222233c3b3244822
+   ⠙ Blocks: 0            Seconds: 0undefined
+   ⠙ Blocks: 0            Seconds: 5undefined
+   ⠼ Blocks: 0            Seconds: 9undefined
+   ⠸ Blocks: 0            Seconds: 13undefined
+   > Blocks: 1            Seconds: 17
+   > contract address:    0xf0B98e1c7B308eD25C69BF48D1242F92FE62442D
+   > block number:        11995510
+   > block timestamp:     1645400097
+   > account:             0x237a3B44F00265993216FdD6d3DDf5e29B085C2A
+   > balance:             5.193478955891126252
+   > gas used:            250142 (0x3d11e)
+   > gas price:           2.500000008 gwei
+   > value sent:          0 ETH
+   > total cost:          0.000625355002001136 ETH
+
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.000625355002001136 ETH
+
+
+2_deploy_contract.js
+====================
+
+   Deploying 'ERC20Coin'
+   ---------------------
+   ⠋ Blocks: 0            Seconds: 0   > transaction hash:    0x72e4369846bce737a47b89e033097af4357d7eda92121ae3c869854324d8269a
+   ⠇ Blocks: 0            Seconds: 0undefined
+   ⠧ Blocks: 1            Seconds: 5undefined
+   > Blocks: 1            Seconds: 9
+   > contract address:    0x6f5873e1DB50A71240689BBfE5F60C37a2A944bC
+   > block number:        11995512
+   > block timestamp:     1645400137
+   > account:             0x237a3B44F00265993216FdD6d3DDf5e29B085C2A
+   > balance:             5.189482423378337348
+   > gas used:            1552700 (0x17b13c)
+   > gas price:           2.500000008 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0038817500124216 ETH
+
+
+   ⠋ Saving migration to chain.File written successfully
+
+The written has the following contents:
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:     0.0038817500124216 ETH
+
+Summary
+=======
+> Total deployments:   2
+> Final cost:          0.004507105014422736 ETH
+
+```
