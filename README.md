@@ -1,3 +1,14 @@
+### Software Versions
+```
+1. Truffle v5.4.33
+2. Solidity - ^0.8.12 (solc-js)
+3. Node v14.19.0
+4. Web3.js v1.5.3
+5. Mac M1 Max Pro (macOS Monterey)
+6. MongoDB 4.0
+```
+
+
 # PRE-REQUISITE
 ```
 1. nodejs & npm
@@ -79,6 +90,9 @@ https://ropsten.etherscan.io/address/0xC837100d9809322Bc8b1D4167a8f000F1F0c9c96
 
 # Smart Contract interaction
 ```
+ganache-cli --p 7545
+cd <repo>
+node server.js
 http:\\localhost:9000\hello
 
 Output as shown below

@@ -1,7 +1,7 @@
 
 const Provider = require('./provider')
 const provider = new Provider()
-const { ADDRESS, ABI } = require('./metadata')
+const { ADDRESS, ABI } = require('./blockchain/metadata')
 
 class Contract {
   constructor() {

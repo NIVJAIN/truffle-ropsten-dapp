@@ -22,8 +22,8 @@ console.log("Moment", moment().format("DD-MM-YYYY-HHmmss"), moment().unix(), Dat
 /* ====================================================
                     BLOCKCHAIN SETUP
 ======================================================*/ 
-const Contract = require('./middlewares/blockchain/Contract')
-const Provider = require('./middlewares/blockchain/provider')
+const Contract = require('./middlewares/Contract')
+const Provider = require('./middlewares/provider')
 const provider = new Provider()
 
 const contract = new Contract()
@@ -34,7 +34,7 @@ const instance = contract.initContract()
                     PRINT PROCESS.ENV FROM .ENV FILE
 ======================================================*/ 
 console.log("=====================Process.env========================")
-console.log(process.env)
+// console.log(process.env)
 console.log("=====================Process.env========================")
 
 /* ====================================================
@@ -167,10 +167,118 @@ const getHelloWorld = async () => {
       }
     })
   }
-  getMessageBlockchain();
-//   setMessageBlockchain("Hello Blockchain");
-//   getMessageBlockchain();
-  getHelloWorld();
+
+  const getTokens = async (accountNumber) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+          const accounts = await web3.eth.getAccounts();
+          account = accounts[accountNumber];
+          const { balanceOf } = instance.methods;
+          const getTokenBalance =  await balanceOf(account).call();
+          console.log("getTokens() accountNumber", accountNumber, getTokenBalance)
+          resolve({
+            result: getTokenBalance
+          })
+      } catch (error){
+          console.log("Register:Error", error)
+          reject(error)
+      }
+    })
+  }
+
+
+const transferTokens = async (accountNumberToTransfer, numberOfTokensToTransfer) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+        const accounts = await web3.eth.getAccounts();
+        _accountNumberToTransfer = accounts[accountNumberToTransfer];
+        account1 = accounts[1];
+        const { transferFrom, transfer } = instance.methods;
+        // const getMessage =  await transfer(account2, 5, {from: account});
+        const getMessage =  await transfer(_accountNumberToTransfer, numberOfTokensToTransfer).send({gas: 270000, from: accounts[0]});
+        console.log("getTextBlockchain()", getMessage)
+        resolve({
+          result: getMessage
+        })
+    } catch (error){
+        console.log("Register:Error", error)
+        reject(error)
+    }
+  })
+}
+
+
+const getTotalSupply = async ( ) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+        const { totalSupply } = instance.methods;
+        var totSupply =  await totalSupply().call();
+        resolve({
+          totalSupply: totSupply,
+        })
+    } catch (error){
+        console.log("Register:Error", error)
+        reject(error)
+    }
+  })
+}
+
+
+
+const transferTokens__ = async (accountNumberToTransfer, numberOfTokensToTransfer) => {
+  return new Promise(async(resolve, reject) => {
+    const accounts = await web3.eth.getAccounts();
+    account = accounts[accountNumberToTransfer];
+    account2 = accounts[1];
+    const { transfer, balanceOf } = instance.methods;
+    instance.transfer(account2, ).then(function (result) {
+      if (result) {
+        console.log("token transfered")
+        balanceOf(localAddress).then(function (amount) {
+          console.log("GetAmount", amount)
+          resolve(amount)
+        });
+      }
+    }).catch(function (err) {
+      // There was an error! Handle it.
+      console.log("TransactionError: ", err);
+      reject(err)
+    });
+  })
+}
+
+
+  
+  const queryRequests = async () => {
+      try {
+        // await getMessageBlockchain();
+      //  let a = await transferTokens(1, 5);
+       let y = await getTokens(1);
+       let x = await getTotalSupply();
+       console.log("x", x)
+        // await setMessageBlockchain("Hello Blockchain");
+        // await getMessageBlockchain();
+        // await getHelloWorld();
+      } catch (error){
+          console.log("Register:Error", error)
+      }
+  }
+
+
+  // const results = async () => {
+  //   return new Promise(async (resolve, reject) => {
+  //     try {
+  //       let getMessage = await queryRequests();
+  //         resolve({
+  //           result: getMessage
+  //         })
+  //     } catch (error){
+  //         console.log("Register:Error", error)
+  //         reject(error)
+  //     }
+  //   })
+  // }
+  queryRequests();
 
 // const cron = require('./services/jobSchedular')
 server.listen(PORT, function(){
