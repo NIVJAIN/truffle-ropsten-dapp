@@ -140,7 +140,7 @@ const getHelloWorld = async () => {
         const accounts = await web3.eth.getAccounts();
         account = accounts[0];
           const { setText } = instance.methods;
-          const setMessage = await setText(message).send({gas: 140000, from: account})
+          const setMessage = await setText(message).send({gas: 140000, from: "0x237a3B44F00265993216FdD6d3DDf5e29B085C2A"})
           console.log("setText()", setMessage)
           resolve({
             result: setMessage
@@ -191,14 +191,16 @@ const transferTokens = async (accountNumberToTransfer, numberOfTokensToTransfer)
   return new Promise(async (resolve, reject) => {
     try {
         const accounts = await web3.eth.getAccounts();
+        console.log(accounts)
         _accountNumberToTransfer = accounts[accountNumberToTransfer];
         account1 = accounts[1];
         const { transferFrom, transfer } = instance.methods;
         // const getMessage =  await transfer(account2, 5, {from: account});
         const getMessage =  await transfer(_accountNumberToTransfer, numberOfTokensToTransfer).send({gas: 270000, from: accounts[0]});
-        console.log("getTextBlockchain()", getMessage)
+        // console.log("getTextBlockchain()", getMessage)
         resolve({
-          result: getMessage
+          result: getMessage,
+          result2: accounts
         })
     } catch (error){
         console.log("Register:Error", error)
@@ -253,13 +255,13 @@ const transferTokens__ = async (accountNumberToTransfer, numberOfTokensToTransfe
       try {
         // await getMessageBlockchain();
       //  let a = await transferTokens(1, 5);
-       let y = await getTokens(1);
+       let y = await getTokens(0);
        let x = await getTotalSupply();
-       let z = await getTokens(0);
-       console.log("x", x, z)
+       let z = await getTokens(1);
+       console.log("x", x, z, y)
         // await setMessageBlockchain("Hello Blockchain");
-        // await getMessageBlockchain();
-        // await getHelloWorld();
+        await getMessageBlockchain();
+        await getHelloWorld();
       } catch (error){
           console.log("Register:Error", error)
       }
