@@ -7,6 +7,9 @@ class  Provider {
   constructor() {
     //setup web3 provider
     try {
+
+
+      
       this.web3 = new Web3(
         // new Web3.providers.HttpProvider('http://localhost:7545'),
         // new Web3.providers.HttpProvider(process.env.BLOCKCHAIN_URL)
