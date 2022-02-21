@@ -258,7 +258,7 @@ const transferTokens__ = async (accountNumberToTransfer, numberOfTokensToTransfe
        let z = await getTokens(0);
       // console.log(x)
        console.log("x", z, z)
-        await setMessageBlockchain("Hello Blockchain");
+        // await setMessageBlockchain("Hello Blockchain");
         await getMessageBlockchain();
         await getHelloWorld();
       } catch (error){

@@ -8,15 +8,13 @@ class  Provider {
   constructor() {
     //setup web3 provider
     try {
-
-
-      
       this.web3 = new Web3(
         // new Web3.providers.HttpProvider('http://localhost:7545'),
         // new Web3.providers.HttpProvider(process.env.BLOCKCHAIN_URL)
         new HDWalletProvider(MNEMONIC,ROPSTEN_URL)
         // new HDWalletProvider(process.env.MNEMONIC,process.env.BLOCKCHAIN_URL)
       )
+      console.log("NETWORK", ROPSTEN_URL)
     }catch (error){
       console.log("Middleware-Provider",error)
     }
