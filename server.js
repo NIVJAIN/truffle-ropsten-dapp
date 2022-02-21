@@ -2,7 +2,10 @@
 /* ====================================================
                     IMPORT SETUP
 ==================================================== */ 
-require('dotenv').config()
+const APP_NETWORK_NAME = "ropsten"
+// const APP_NETWORK_NAME = "ganache"
+require('dotenv').config({ path: `.env.${APP_NETWORK_NAME}` })
+// require('dotenv').config()
 const express = require('express')
 const fs = require('fs')
 const app = express();

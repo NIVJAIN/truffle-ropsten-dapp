@@ -1,5 +1,8 @@
 {
-  "scripts": {},
+  "scripts": {
+    "sropsten": "node server.js --network ropsten",
+    "start:ropsten": "node server.js --NODE_ENV=ropsten"
+  },
   "dependencies": {
     "@openzeppelin/contracts": "^4.5.0",
     "@truffle/contract": "^4.4.9",
