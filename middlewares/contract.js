@@ -3,6 +3,7 @@ const Provider = require('./provider')
 const provider = new Provider()
 const { ADDRESS, ABI } = require('./blockchain/metadata')
 
+
 class Contract {
   constructor() {
     this.web3 = provider.web3
