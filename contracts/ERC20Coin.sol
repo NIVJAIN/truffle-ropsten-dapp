@@ -1,9 +1,9 @@
 pragma solidity >=0.4.0 <0.9.0;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract ERC20Coin is ERC20 {
-      constructor() ERC20("Scaffold ETH Token", "SET") {
-        // _mint(msg.sender, 1000 * 10 ** 18); //1000000000000000000000n
-        _mint(msg.sender, 5555 * 1 ** 1);
+      constructor() ERC20("DLT SCB ETH ERC20 Token", "SCB") {
+        _mint(msg.sender, 5555 * 10 ** 18); //1000000000000000000000n
+        // _mint(msg.sender, 5555 * 1 ** 1);
     }
 
 
