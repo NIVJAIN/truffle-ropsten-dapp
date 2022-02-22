@@ -68,6 +68,7 @@ module.exports = async function(deployer) {
     var metadataInfo = 
 `const ADDRESS = "${HelloWorld.address}";
 const ABI = ${JSON.stringify(HelloWorld.abi)};
+const network = "${deployer.network}";
 module.exports = { ADDRESS, ABI };`
 
       fs.writeFile(fpath, metadataInfo,
