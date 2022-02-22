@@ -63,7 +63,7 @@ module.exports = {
     // },
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
-    dev: {
+    ganache: {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*"

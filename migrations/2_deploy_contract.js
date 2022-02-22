@@ -1,28 +1,70 @@
 // var HelloWorld = artifacts.require("HelloWorld");
 var HelloWorld = artifacts.require("ERC20Coin");
-
+console.log("helloworld", HelloWorld._json.contractName)
 const fs = require('fs')
 var fse = require('fs-extra');
 const path = require('path')
 const moment = require('moment')
 
-// Backup the old metadata.js file
-const fpath = path.join(__dirname, '../middlewares/blockchain/metadata.js');
-var filelocation = '../middlewares/blockchain'
-if (fs.existsSync(fpath)) {
-  fse.copySync(path.resolve(__dirname ,'../middlewares/blockchain/metadata.js'), `${filelocation}/${moment().format("DD-MMM-YYYY-HHmmss")}-metada.js`);
+
+// var fpath = path.join(__dirname, `../middlewares/blockchain/ganache/metadata.js`);
+//  networkName can be ganache or ropsten or kovan or rinkbey, as of now its enable only for ganache and ropsten.
+const network_backup = function(networkName){
+  // Backup the old metadata.js file
+  return new Promise((resolve,reject)=>{
+    const filepath = path.join(__dirname, `../middlewares/blockchain/${networkName}/metadata.js`);
+    var filelocation = `../middlewares/blockchain/${networkName}`;
+    if (fs.existsSync(filepath)) {
+      fse.copySync(path.resolve(__dirname ,`../middlewares/blockchain/${networkName}/metadata.js`), path.resolve(__dirname, `${filelocation}/${moment().format("DD-MMM-YYYY-HHmmss")}-metada.js`));
+      resolve(`successfully backup the metadata to ${filepath}`)
+    } else {
+      reject(`file not exist ${filepath}`)
+    }
+  })
 }
 
-// Backup the old build files ERC20Coin.json file, this is for truffle frameworks, need some fine tuning to filenaming may be later
-const fileName = "ERC20Coin.json"
-const buildFpath = path.join(__dirname, `../build/contracts/${fileName}`);
-var filelocation = '../build/contracts'
-if (fs.existsSync(buildFpath)) {
-  fse.copySync(path.resolve(__dirname ,'../build/contracts/ERC20Coin.json'), `${filelocation}/${moment().format("DD-MMM-YYYY-HHmmss")}-${fileName}`);
+const build_backup = function(fileName, backupFileName){
+  // Backup the old metadata.js file
+  return new Promise((resolve,reject)=>{
+    const buildFpath = path.join(__dirname, `../build/contracts/${fileName}`);
+    const smartContractJSONFileName = HelloWorld._json.contractName 
+    var filelocation = `../build/contracts`;
+    if (fs.existsSync(buildFpath)) {
+      fse.copySync(path.resolve(__dirname ,`../build/contracts/${fileName}`), path.resolve(__dirname, `${filelocation}/${moment().format("DD-MMM-YYYY-HHmmss")}-${backupFileName}-${smartContractJSONFileName}.json`));
+      resolve(`successfully backup the metadata to ${buildFpath}`)
+    } else {
+      reject(`file not exist ${buildFpath}`)
+    }
+  })
 }
 
-module.exports = function(deployer) {
-    deployer.deploy(HelloWorld).then(() =>{
+
+module.exports = async function(deployer) {
+    deployer.deploy(HelloWorld).then(async() =>{
+      let copy = "";
+      let filepath = "";
+      let backup = "";
+      try {
+        if (deployer.network == "ganache") {
+          fpath = path.join(__dirname, `../middlewares/blockchain/${deployer.network}/metadata.js`);
+           copy = await network_backup(deployer.network)
+           backup = await build_backup("ERC20Coin.json", "ganache" )
+        } else if (deployer.network == "ropsten") {
+          fpath = path.join(__dirname, `../middlewares/blockchain/${deployer.network}/metadata.js`);
+          copy = await network_backup(deployer.network)
+          backup = await build_backup("ERC20Coin.json", "ropsten" )
+  
+        } else {
+          fpath = path.join(__dirname, `../middlewares/blockchain/ganache/metadata.js`);
+          copy = await network_backup("ganache")
+          backup = await build_backup("ERC20Coin.json", "ganache" )
+        }
+      } catch (error) {
+        console.log("Error in backing up files", error)
+      }
+
+
+
     var metadataInfo = 
 `const ADDRESS = "${HelloWorld.address}";
 const ABI = ${JSON.stringify(HelloWorld.abi)};
@@ -40,7 +82,7 @@ module.exports = { ADDRESS, ABI };`
         },
       )
     }).catch(function(err){
-      console.log("errewerwrewrwe", err)
+      console.log("2_deploy_contract.js ", err)
     })
     // Additional contracts can be deployed here
 };

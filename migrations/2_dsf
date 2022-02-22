@@ -1,0 +1,94 @@
+// var HelloWorld = artifacts.require("HelloWorld");
+var HelloWorld = artifacts.require("ERC20Coin");
+
+const fs = require('fs')
+var fse = require('fs-extra');
+const path = require('path')
+const moment = require('moment')
+console.log(" iam second =========================================================")
+
+// // Backup the old metadata.js file
+// const fpath = path.join(__dirname, '../middlewares/blockchain/ganache/metadata.js');
+// var filelocation = '../middlewares/blockchain/ganache'
+// if (fs.existsSync(fpath)) {
+//   fse.copySync(path.resolve(__dirname ,'../middlewares/blockchain/ganache/metadata.js'), `${filelocation}/${moment().format("DD-MMM-YYYY-HHmmss")}-metada.js`);
+// }
+
+var fpath = path.join(__dirname, `../middlewares/blockchain/ganache/metadata.js`);
+
+const network_backup = function(networkName){
+  // Backup the old metadata.js file
+  const fpath = path.join(__dirname, '../middlewares/blockchain/ganache/metadata.js');
+  var filelocation = '../middlewares/blockchain/ganache'
+  if (fs.existsSync(fpath)) {
+    fse.copySync(path.resolve(__dirname ,'../middlewares/blockchain/ganache/metadata.js'), `${filelocation}/${moment().format("DD-MMM-YYYY-HHmmss")}-metada.js`);
+  }
+}
+
+const network_backup2 = function (networkName) {
+  return new Promise(function(resolve,reject) {
+    try {
+       // Backup the old metadata.js file
+       console.log("gaananannanaa", networkName)
+      
+      console.log("fpath ---", fpath)
+      var filelocation = `../middlewares/blockchain/${networkName}`
+      if (fs.existsSync(fpath)) {
+        console.log("fileexists.......")
+        fse.copySync(path.resolve(__dirname ,`../middlewares/blockchain/${networkName}/metadata.js`), `${filelocation}/${moment().format("DD-MMM-YYYY-HHmmss")}-metada.js`);
+        resolve(true)
+      } else {
+        reject("no file to backup")
+      }
+    } catch (error) {
+      console.log("ganache_backup() ", error)
+      reject(error)
+    }
+  })
+}
+
+// // Backup the old build files ERC20Coin.json file, this is for truffle frameworks, need some fine tuning to filenaming may be later
+// const fileName = "ERC20Coin.json"
+// const buildFpath = path.join(__dirname, `../build/contracts/${fileName}`);
+// var filelocation = '../build/contracts'
+// if (fs.existsSync(buildFpath)) {
+//   fse.copySync(path.resolve(__dirname ,'../build/contracts/ERC20Coin.json'), `${filelocation}/${moment().format("DD-MMM-YYYY-HHmmss")}-${fileName}`);
+// }
+
+module.exports = async function(deployer) {
+  console.log(" iam third =========================================================")
+
+  console.log("JAIN  ====> ", deployer.network)
+  if(deployer.network == "dev") {
+   const fpath = path.join(__dirname, '../middlewares/blockchain/metadata.js');
+var filelocation = '../middlewares/blockchain'
+if (fs.existsSync(fpath)) {
+  fse.copySync(path.resolve(__dirname ,'../middlewares/blockchain/metadata.js'), `${filelocation}/${moment().format("DD-MMM-YYYY-HHmmss")}-metada.js`);
+}
+    console.log("ccccc")
+  } else {
+    console.log("not ganache")
+  }
+  
+    deployer.deploy(HelloWorld).then(() =>{
+    var metadataInfo = 
+`const ADDRESS = "${HelloWorld.address}";
+const ABI = ${JSON.stringify(HelloWorld.abi)};
+module.exports = { ADDRESS, ABI };`
+
+      fs.writeFile(fpath, metadataInfo,
+        (err) => {
+          if (err) {
+            console.log(err)
+          } else {
+            console.log("File written successfully\n");
+            console.log("The written has the following contents:");
+            // console.log(fs.readFileSync(fpath, "utf8"));
+          }
+        },
+      )
+    }).catch(function(err){
+      console.log("errewerwrewrwe", err)
+    })
+    // Additional contracts can be deployed here
+};
