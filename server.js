@@ -38,7 +38,7 @@ const instance = contract.initContract()
                     PRINT PROCESS.ENV FROM .ENV FILE
 ======================================================*/ 
 console.log("=====================Process.env========================")
-// console.log(process.env)
+console.log(process.env)
 console.log("=====================Process.env========================")
 
 /* ====================================================
@@ -260,7 +260,7 @@ const transferTokens__ = async (accountNumberToTransfer, numberOfTokensToTransfe
        let y = await getTokens(1);
        let x = await getTotalSupply();
        let z = await getTokens(0);
-       console.log("x", x, z)
+      //  console.log("x", x, z)
         // await setMessageBlockchain("Hello Blockchain");
         // await getMessageBlockchain();
         // await getHelloWorld();

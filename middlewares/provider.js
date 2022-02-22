@@ -3,7 +3,8 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 const MNEMONIC = 'keen beef way never plunge like slab shove unhappy file same rely'
 const ROPSTEN_URL = "https://ropsten.infura.io/v3/49ddda8aa6f44ea9a479729898a4024f"
 const GANACHE_URL = 'http://localhost:7545'
-let ETHEREUM_NETWORK_SELECTION = process.env.ETHEREUM_NETWORK_SELECTION || "ganache"
+let ETHEREUM_NETWORK_SELECTION = process.env.APP_NETWORK_NAME || "ganache"
+console.log("ETHEREUM_NETWORK_SELECTION =========>>>>>>>", ETHEREUM_NETWORK_SELECTION)
 class  Provider {
   constructor() {
     // setup web3 provider
