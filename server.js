@@ -82,8 +82,9 @@ app.use((req, res, next) => {
 /* ====================================================
                     ROUTES SETUP
 ======================================================*/ 
-// const blockchain = require('./api/routes/blockchain_routes.js')
-// app.use('/blockchain', blockchain.router)
+const blockchain = require('./api/routes/blockchain_router.js')
+app.use('/blockchain', blockchain.router)
+
 /* ====================================================
                     STATIC SITE SETUP
 ======================================================*/ 

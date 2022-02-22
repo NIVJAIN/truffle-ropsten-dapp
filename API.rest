@@ -1,5 +1,32 @@
 @baseUrl=http://localhost:9000
 
 GET {{baseUrl}}/hello
+###
+GET {{baseUrl}}/blockchain/getmessage
+###
+get {{baseUrl}}/blockchain/check
+###
+get {{baseUrl}}/blockchain/totalsupply
+
+###
+POST {{baseUrl}}/blockchain/setmessage
+Content-Type: application/json
+
+{
+    "setmessage" : "Welcome2EthereumClient"
+}
+###
+
+###
+POST {{baseUrl}}/blockchain/transfertokens
+Content-Type: application/json
+
+{
+    "accountnumber" : "2",
+    "totaltokens" : 5
+}
+###
+###
+get {{baseUrl}}/blockchain/gettokens/2
 
 ###
