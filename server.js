@@ -2,7 +2,7 @@
 /* ====================================================
                     IMPORT SETUP
 ==================================================== */ 
-const APP_NETWORK_NAME = "ganache"
+const APP_NETWORK_NAME = "ropsten"
 // const APP_NETWORK_NAME = "ganache"
 require('dotenv').config({ path: `.env.${APP_NETWORK_NAME}` })
 process.env.APP_NETWORK_NAME = APP_NETWORK_NAME

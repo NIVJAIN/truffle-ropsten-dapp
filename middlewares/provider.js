@@ -4,7 +4,6 @@ const MNEMONIC = 'keen beef way never plunge like slab shove unhappy file same r
 const ROPSTEN_URL = "https://ropsten.infura.io/v3/49ddda8aa6f44ea9a479729898a4024f"
 const GANACHE_URL = 'http://localhost:7545'
 let ETHEREUM_NETWORK_SELECTION = process.env.ETHEREUM_NETWORK_SELECTION || "ganache"
-ETHEREUM_NETWORK_SELECTION = "ganache"
 class  Provider {
   constructor() {
     // setup web3 provider
@@ -15,7 +14,12 @@ class  Provider {
           this.web3 = new Web3(new HDWalletProvider(MNEMONIC,ROPSTEN_URL))
           break;
         case "ganache":
-          console.log("GANACHE PROVIDER ===================>", ETHEREUM_NETWORK_SELECTION)
+          this.web3 = new Web3(new Web3.providers.HttpProvider(GANACHE_URL))
+          break;
+        case "rinkbey":
+            this.web3 = new Web3(new Web3.providers.HttpProvider(GANACHE_URL))
+            break;
+        case "kovan":
           this.web3 = new Web3(new Web3.providers.HttpProvider(GANACHE_URL))
           break;
         default:
