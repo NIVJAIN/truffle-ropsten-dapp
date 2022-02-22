@@ -62,6 +62,17 @@ const ACCOUNT_TOKEN_BALANCE = async (req,res,next)=>{
     }
 }
 
+const TOKENS_TRANSFER_FROM = async (req,res,next)=>{
+    try {
+      var accountNumberFrom = req.body.accountnumberfrom
+      var accountNumberTo = req.body.accountnumberto
+      var totalTokens = req.body.totaltokens
+      gethash = await blockchain_model.TOKENS_TRANSFER_FROM(accountNumberFrom, accountNumberTo,totalTokens);
+      res.status(200).json(gethash)
+    } catch (err) {
+      res.status(500).json(err)
+    }
+}
 
 module.exports = {
     CHECK,  
@@ -69,6 +80,7 @@ module.exports = {
     GET_TEXT,
     GET_TOTAL_SUPPLY,
     TRANSFER_TOKENS,
-    ACCOUNT_TOKEN_BALANCE
+    ACCOUNT_TOKEN_BALANCE,
+    TOKENS_TRANSFER_FROM
 }
   

@@ -23,11 +23,23 @@ POST {{baseUrl}}/blockchain/transfertokens
 Content-Type: application/json
 
 {
-    "accountnumber" : "2",
+    "accountnumber" : "5",
     "totaltokens" : 5
 }
 ###
-###
-get {{baseUrl}}/blockchain/gettokens/2
 
 ###
+# router.get('/gettokens/:account', blockchain_controller.ACCOUNT_TOKEN_BALANCE)
+get {{baseUrl}}/blockchain/gettokens/5
+
+###
+
+###
+POST {{baseUrl}}/blockchain/transferfrom
+Content-Type: application/json
+
+{
+    "accountnumberfrom" : "1",
+    "accountnumberto" : "2",
+    "totaltokens" : 1
+}

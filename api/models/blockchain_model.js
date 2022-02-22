@@ -95,7 +95,7 @@ const TRANSFER_TOKENS = async (accountNumberToTransfer, numberOfTokensToTransfer
     })
   }
 
-  const ACCOUNT_TOKEN_BALANCE= async (accountNumber) => {
+const ACCOUNT_TOKEN_BALANCE= async (accountNumber) => {
     return new Promise(async (resolve, reject) => {
         try {
           const accounts = await web3.eth.getAccounts();
@@ -113,10 +113,32 @@ const TRANSFER_TOKENS = async (accountNumberToTransfer, numberOfTokensToTransfer
     })
 } 
 
+
+const TOKENS_TRANSFER_FROM = async (accountNumberFrom, accountNumberTo, totaltokens) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+          const accounts = await web3.eth.getAccounts();
+          accountFrom = accounts[accountNumberFrom];
+          accountTo = accounts[accountNumberTo];
+          const { transferFrom } = instance.methods;
+          console.log("TOKEN_TRANSFER_FROM ========> ", accountFrom, accountTo, accountNumberFrom, accountNumberTo)
+          const transferTokens =  await transferFrom(accountFrom, accountTo, totaltokens).send({gas: 270000, from: accountFrom});
+          console.log("TOKENS_TRANSFER_FROM()", transferTokens)
+          resolve({
+            result: transferTokens
+          })
+        } catch (error){
+          console.log("TOKENS_TRANSFER_FROM():Error", error)
+          reject(error)
+        }
+    })
+} 
+
 module.exports = {
     GET_TEXT,
     SET_TEXT,
     GET_TOTAL_SUPPLY,
     TRANSFER_TOKENS,
-    ACCOUNT_TOKEN_BALANCE
+    ACCOUNT_TOKEN_BALANCE,
+    TOKENS_TRANSFER_FROM
 }
