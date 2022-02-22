@@ -1,9 +1,9 @@
 
 const Provider = require('./provider')
 const provider = new Provider()
-const { ADDRESS, ABI } = require(`./blockchain/${process.env.APP_NETWORK_NAME}/metadata`)
+const { ADDRESS, ABI } = require(`./blockchain/${process.env.ETHEREUM_NETWORK_SELECTION}/metadata`)
 
-console.log("APP NETWORK NAME ============== >>>>>>>", process.env.APP_NETWORK_NAME, ADDRESS)
+console.log("contract.js file APP NETWORK NAME ============== >>>>>>>", process.env.APP_NETWORK_NAME, ADDRESS)
 
 class Contract {
   constructor() {
