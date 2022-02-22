@@ -2,7 +2,6 @@
 
 GET {{baseUrl}}/hello
 ###
-GET {{baseUrl}}/blockchain/getmessage
 ###
 get {{baseUrl}}/blockchain/check
 ###
@@ -13,9 +12,11 @@ POST {{baseUrl}}/blockchain/setmessage
 Content-Type: application/json
 
 {
-    "setmessage" : "Welcome2EthereumClient"
+    "setmessage" : "Welcome2EthereumClient-2"
 }
 ###
+
+GET {{baseUrl}}/blockchain/getmessage
 
 ###
 POST {{baseUrl}}/blockchain/transfertokens
