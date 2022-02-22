@@ -7,7 +7,7 @@ let ETHEREUM_NETWORK_SELECTION = process.env.ETHEREUM_NETWORK_SELECTION || "gana
 ETHEREUM_NETWORK_SELECTION = "ganache"
 class  Provider {
   constructor() {
-    //setup web3 provider
+    // setup web3 provider
     try {
       switch (ETHEREUM_NETWORK_SELECTION) {
         case "ropsten":
@@ -16,15 +16,24 @@ class  Provider {
           break;
         case "ganache":
           console.log("GANACHE PROVIDER ===================>", ETHEREUM_NETWORK_SELECTION)
-          this.web3 = new Web3.providers.HttpProvider(GANACHE_URL)
+          this.web3 = new Web3(new Web3.providers.HttpProvider(GANACHE_URL))
           break;
         default:
-          this.web3 = new Web3.providers.HttpProvider(GANACHE_URL)
+          this.web3 = new Web3(new Web3.providers.HttpProvider(GANACHE_URL))
           break;
       }
     }catch (error){
       console.log("Middleware-Provider",error)
     }
+    // try {
+    //   this.web3 = new Web3(
+    //     // new Web3.providers.HttpProvider('http://localhost:7545'),
+    //     new Web3.providers.HttpProvider(process.env.BLOCKCHAIN_URL)
+    //     // new HDWalletProvider(MNEMONIC,ROPSTEN_URL)
+    //   )
+    // }catch (error){
+    //   console.log("Middleware-Provider",error)
+    // }
   }
   async check_eth_connection(){
     Promise.race([
