@@ -9,6 +9,8 @@ contract ERC20Coin is ERC20 {
 
     bytes32 public fooStore;
     string public setMessage = "Hello Solidity";
+    // Public variable of type unsigned int to keep the number of counts
+    uint256 public count = 0;
 
     function sayHello() public pure returns(string memory){
         return("hello world");
@@ -26,6 +28,21 @@ contract ERC20Coin is ERC20 {
     }
     function getFoo() public view returns(bytes32) {
         return(fooStore);
+    }
+
+
+    // Function that increments our counter
+    function increment() public {
+        count += 1;
+    }
+
+    // Not necessary getter to get the count value
+    function getCount() public view returns (uint256) {
+        return count;
+    }
+     // Function that increments our counter
+    function decrement() public {
+        count--;
     }
 }
 

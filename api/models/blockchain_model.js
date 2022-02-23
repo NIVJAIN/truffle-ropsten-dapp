@@ -134,11 +134,27 @@ const TOKENS_TRANSFER_FROM = async (accountNumberFrom, accountNumberTo, totaltok
     })
 } 
 
+
+const DEPLOY = async function(deployer) {
+  // deploy a contract
+  try {
+    var HelloWorld = artifacts.require("../../build/contracts/ERC20Coin");
+    await deployer.deploy(HelloWorld);
+    //access information about your deployed contract instance
+    const instance = await MyContract.deployed();
+    
+  } catch (error) {
+    console.log("DEPLOY ---- ", error)
+  }
+
+}
+
 module.exports = {
     GET_TEXT,
     SET_TEXT,
     GET_TOTAL_SUPPLY,
     TRANSFER_TOKENS,
     ACCOUNT_TOKEN_BALANCE,
-    TOKENS_TRANSFER_FROM
+    TOKENS_TRANSFER_FROM,
+    DEPLOY,
 }

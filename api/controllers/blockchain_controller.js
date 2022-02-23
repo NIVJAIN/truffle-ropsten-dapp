@@ -74,6 +74,18 @@ const TOKENS_TRANSFER_FROM = async (req,res,next)=>{
     }
 }
 
+const DEPLOY = async (req,res,next)=>{
+  try {
+    var tokenName = req.body.tokenname
+    var totalToken = req.body.totaltoken
+    var tokenDescription = req.body.tokendescription
+    gethash = await blockchain_model.DEPLOY(tokenName, totalToken,tokenDescription);
+    res.status(200).json(gethash)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+}
+
 module.exports = {
     CHECK,  
     SET_TEXT,
@@ -81,6 +93,7 @@ module.exports = {
     GET_TOTAL_SUPPLY,
     TRANSFER_TOKENS,
     ACCOUNT_TOKEN_BALANCE,
-    TOKENS_TRANSFER_FROM
+    TOKENS_TRANSFER_FROM,
+    DEPLOY
 }
   

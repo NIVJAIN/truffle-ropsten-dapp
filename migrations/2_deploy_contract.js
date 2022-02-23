@@ -39,19 +39,19 @@ const build_backup = function(fileName, backupFileName){
 }
 
 
-module.exports = async function(deployer) {
+module.exports = async function(deployer, network, accounts) {
     deployer.deploy(HelloWorld).then(async() =>{
       let copy = "";
       let filepath = "";
       let backup = "";
       try {
-        if (deployer.network == "ganache") {
-          fpath = path.join(__dirname, `../middlewares/blockchain/${deployer.network}/metadata.js`);
-           copy = await network_backup(deployer.network)
+        if (network == "ganache") {
+          fpath = path.join(__dirname, `../middlewares/blockchain/${network}/metadata.js`);
+           copy = await network_backup(network)
            backup = await build_backup("ERC20Coin.json", "ganache" )
-        } else if (deployer.network == "ropsten") {
-          fpath = path.join(__dirname, `../middlewares/blockchain/${deployer.network}/metadata.js`);
-          copy = await network_backup(deployer.network)
+        } else if (network == "ropsten") {
+          fpath = path.join(__dirname, `../middlewares/blockchain/${network}/metadata.js`);
+          copy = await network_backup(network)
           backup = await build_backup("ERC20Coin.json", "ropsten" )
   
         } else {

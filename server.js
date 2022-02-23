@@ -252,8 +252,40 @@ const transferTokens__ = async (accountNumberToTransfer, numberOfTokensToTransfe
   })
 }
 
-
+const getCount = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+        const { getCount } = instance.methods;
+        const getMessage =  await getCount().call();
+        console.log("getTextBlockchain()", getMessage)
+        resolve({
+          result: getMessage
+        })
+    } catch (error){
+        console.log("Register:Error", error)
+        reject(error)
+    }
+  })
+}
   
+const increment = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const accounts = await web3.eth.getAccounts();
+      account = accounts[0];
+        const { increment } = instance.methods;
+        const setMessage = await increment().send({gas: 140000, from: account})
+        // console.log("increment()", setMessage)
+        resolve({
+          result: setMessage
+        })
+    } catch (error){
+        console.log("Register:Error", error)
+        reject(error)
+    }
+  })
+}
+
   const queryRequests = async () => {
       try {
         // await getMessageBlockchain();
@@ -261,6 +293,9 @@ const transferTokens__ = async (accountNumberToTransfer, numberOfTokensToTransfe
        let y = await getTokens(1);
        let x = await getTotalSupply();
        let z = await getTokens(0);
+      //  let inc = await increment();
+       let gc = await getCount();
+       console.log("fc", gc)
       //  console.log("x", x, z)
         // await setMessageBlockchain("Hello Blockchain");
         // await getMessageBlockchain();
