@@ -83,7 +83,10 @@ app.use((req, res, next) => {
                     ROUTES SETUP
 ======================================================*/ 
 const blockchain = require('./api/routes/blockchain_router.js')
+const contractDeployment = require('./api/routes/blockchain_router.js')
+
 app.use('/blockchain', blockchain.router)
+app.use('smartcontract', contractDeployment.router)
 
 /* ====================================================
                     STATIC SITE SETUP

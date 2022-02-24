@@ -142,18 +142,6 @@ const TOKENS_TRANSFER_FROM = async (accountNumberFrom, accountNumberTo, totaltok
 } 
 
 
-const DEPLOY = async function(deployer) {
-  // deploy a contract
-  try {
-    var HelloWorld = artifacts.require("../../build/contracts/ERC20Coin.sol");
-    await deployer.deploy(HelloWorld);
-    //access information about your deployed contract instance
-    const instance = await MyContract.deployed();
-    
-  } catch (error) {
-    console.log("DEPLOY ---- ", error)
-  }
-}
 const GET_COUNT = async () => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -204,6 +192,9 @@ const DECREMENT = async () => {
     }
   })
 }
+
+
+
 module.exports = {
     GET_TEXT,
     SET_TEXT,
@@ -211,7 +202,7 @@ module.exports = {
     TRANSFER_TOKENS,
     ACCOUNT_TOKEN_BALANCE,
     TOKENS_TRANSFER_FROM,
-    DEPLOY,
+    // DEPLOY,
     INCREMENT,
     DECREMENT,
     GET_COUNT,

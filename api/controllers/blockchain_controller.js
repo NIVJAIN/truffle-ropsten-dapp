@@ -81,7 +81,7 @@ const DEPLOY = async (req,res,next)=>{
     var tokenName = req.body.tokenname
     var totalToken = req.body.totaltoken
     var tokenDescription = req.body.tokendescription
-    gethash = await blockchain_model.DEPLOY(tokenName, totalToken,tokenDescription);
+    gethash = await blockchain_model.DEPLOY();
     res.status(200).json(gethash)
   } catch (err) {
     res.status(500).json(err)
