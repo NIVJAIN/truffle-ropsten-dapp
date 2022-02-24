@@ -93,7 +93,7 @@ https://ropsten.etherscan.io/address/0xC837100d9809322Bc8b1D4167a8f000F1F0c9c96
 ```
 ganache-cli --p 7545
 cd <repo>
-node server.js
+npm run ganache (dont use node server.js)
 http:\\localhost:9000\hello
 
 Output as shown below
