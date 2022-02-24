@@ -65,7 +65,7 @@ module.exports = {
     // NB: It's important to wrap the provider as a function.
     ganache: {
       host: "127.0.0.1",
-      port: 7545,
+      port: 8545,
       network_id: "*"
     },
 

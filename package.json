@@ -1,8 +1,10 @@
 {
   "scripts": {
     "start:abc": "node ./arg.js -a -b -c",
-    "ropsten": "node server.js ropsten",
+    "ropsten": "node server.js ropsten", 
     "ganache": "node server.js ganache",
+    "deploy:ganache": "truffle migrate --network ganache --rest",
+    "deploy:ropsten": "truffle migrate --network ropsten --rest",
     "start:ropsten2": "node server.js --NODE_ENV=ropsten2",
     "arg": "nodemon arg.js --ROPSTEN=ropsten"
   },
