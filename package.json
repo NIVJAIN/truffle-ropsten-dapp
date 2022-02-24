@@ -1,7 +1,10 @@
 {
   "scripts": {
-    "sropsten": "node server.js --network ropsten",
-    "start:ropsten": "node server.js --NODE_ENV=ropsten"
+    "start:abc": "node ./arg.js -a -b -c",
+    "ropsten": "node server.js ropsten",
+    "ganache": "node server.js ganache",
+    "start:ropsten2": "node server.js --NODE_ENV=ropsten2",
+    "arg": "nodemon arg.js --ROPSTEN=ropsten"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.5.0",

@@ -30,7 +30,7 @@
 2. cd <repo> && npm install --save
 3. truffle compile
 4. truffle migrate --network dev 0r truffle migrate --network dev --reset
-4. npx 
+4. npm run ganache
 ```
 
 
@@ -44,7 +44,8 @@
 5. truffle(ropsten)> web3.eth.getBalance(accounts[0]) 
 6. make sure ethers are funded to the above account[0]
 7. truffle(ropsten)> web3.eth.getBalance(accounts[0]) '200000000000000000'
-4. truffle migrate --network ropsten
+8. truffle migrate --network ropsten
+9. npm run ropsten
 ```
 
 

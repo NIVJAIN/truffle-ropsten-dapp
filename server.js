@@ -3,7 +3,10 @@
                     IMPORT SETUP
 ==================================================== */ 
 // const APP_NETWORK_NAME = "ropsten"
-const APP_NETWORK_NAME = "ganache"
+let APP_NETWORK_NAME = "ganache"
+console.log("BLOCKCHAIN ETHEREUM CLIENT SELECTION ========== >>>>>> ",process.argv[2])
+APP_NETWORK_NAME = process.argv[2];
+console.log("APPP", APP_NETWORK_NAME)
 require('dotenv').config({ path: `.env.${APP_NETWORK_NAME}` })
 process.env.APP_NETWORK_NAME = APP_NETWORK_NAME
 // require('dotenv').config()
@@ -83,10 +86,10 @@ app.use((req, res, next) => {
                     ROUTES SETUP
 ======================================================*/ 
 const blockchain = require('./api/routes/blockchain_router.js')
-const contractDeployment = require('./api/routes/blockchain_router.js')
+const contractDeployment = require('./api/routes/deploy_contract_router')
 
 app.use('/blockchain', blockchain.router)
-app.use('smartcontract', contractDeployment.router)
+app.use('/smartcontract', contractDeployment.router)
 
 /* ====================================================
                     STATIC SITE SETUP
@@ -297,8 +300,8 @@ const increment = async () => {
        let x = await getTotalSupply();
        let z = await getTokens(0);
       //  let inc = await increment();
-       let gc = await getCount();
-       console.log("fc", gc)
+      //  let gc = await getCount();
+       console.log("fc")
       //  console.log("x", x, z)
         // await setMessageBlockchain("Hello Blockchain");
         // await getMessageBlockchain();

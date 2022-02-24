@@ -45,11 +45,11 @@ Content-Type: application/json
 }
 ###
 
-POST {{baseUrl}}/blockchain/deploy
+POST {{baseUrl}}/smartcontract/deploy
 Content-Type: application/json
 
 {
-    "accountnumberfrom" : "1",
-    "accountnumberto" : "2",
-    "totaltokens" : 1
+    "tokenname" : "1",
+    "totaltokens" : "2",
+    "tokendescription" : "ERC20 TOKEN SCB"
 }
