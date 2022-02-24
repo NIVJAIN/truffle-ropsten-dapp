@@ -45,6 +45,7 @@ const TRANSFER_TOKENS = async (req,res,next)=>{
       gethash = await blockchain_model.TRANSFER_TOKENS(accountNumberToTransfer, numberOfTokensToTransfer);
       res.status(200).json(gethash)
     } catch (err) {
+      console.log("rrrrrrr", err)
       res.status(500).json(err)
     }
 }
@@ -70,6 +71,7 @@ const TOKENS_TRANSFER_FROM = async (req,res,next)=>{
       gethash = await blockchain_model.TOKENS_TRANSFER_FROM(accountNumberFrom, accountNumberTo,totalTokens);
       res.status(200).json(gethash)
     } catch (err) {
+      console.log("TransferFromController ", err)
       res.status(500).json(err)
     }
 }

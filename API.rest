@@ -24,13 +24,13 @@ Content-Type: application/json
 
 {
     "accountnumber" : "1",
-    "totaltokens" : 25
+    "totaltokens" : 1
 }
 ###
 
 ###
 # router.get('/gettokens/:account', blockchain_controller.ACCOUNT_TOKEN_BALANCE)
-get {{baseUrl}}/blockchain/gettokens/1
+get {{baseUrl}}/blockchain/gettokens/2
 
 ###
 

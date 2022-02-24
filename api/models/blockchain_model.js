@@ -34,7 +34,7 @@ const GET_TEXT = async () => {
           })
         } catch (error){
           console.log("Register:Error", error)
-          reject(error)
+          reject(error.message)
         }
     })
 }
@@ -54,7 +54,7 @@ const SET_TEXT = async (message) => {
           })
       } catch (error){
           console.log("Register:Error", error)
-          reject(error)
+          reject(error.message)
       }
     })
   }
@@ -70,7 +70,7 @@ const SET_TEXT = async (message) => {
           })
         } catch (error){
           console.log("GET_TOTAL_SUPPLY():Error", error)
-          reject(error)
+          reject(error.message)
         }
     })
 }
@@ -90,7 +90,7 @@ const TRANSFER_TOKENS = async (accountNumberToTransfer, numberOfTokensToTransfer
           })
       } catch (error){
           console.log("Register:Error", error)
-          reject(error)
+          reject(error.message)
       }
     })
   }
@@ -108,7 +108,7 @@ const ACCOUNT_TOKEN_BALANCE= async (accountNumber) => {
           })
         } catch (error){
           console.log("GET_TOTAL_SUPPLY():Error", error)
-          reject(error)
+          reject(error.message)
         }
     })
 } 
@@ -120,16 +120,23 @@ const TOKENS_TRANSFER_FROM = async (accountNumberFrom, accountNumberTo, totaltok
           const accounts = await web3.eth.getAccounts();
           accountFrom = accounts[accountNumberFrom];
           accountTo = accounts[accountNumberTo];
-          const { transferFrom } = instance.methods;
-          console.log("TOKEN_TRANSFER_FROM ========> ", accountFrom, accountTo, accountNumberFrom, accountNumberTo)
+          const { transferFrom, approve } = instance.methods;
+          const approveTrasnfer = await approve(accountFrom, totaltokens).send({gas: 270000, from: accountFrom});
+          // console.log("TOKEN_TRANSFER_FROM ========> ", accountFrom, accountTo, accountNumberFrom, accountNumberTo)
           const transferTokens =  await transferFrom(accountFrom, accountTo, totaltokens).send({gas: 270000, from: accountFrom});
-          console.log("TOKENS_TRANSFER_FROM()", transferTokens)
+          // console.log("TOKENS_TRANSFER_FROM()", transferTokens)
           resolve({
             result: transferTokens
           })
         } catch (error){
-          console.log("TOKENS_TRANSFER_FROM():Error", error)
-          reject(error)
+          if(error.message){
+            console.log("if err.message TOKENS_TRANSFER_FROM():Error", error.message)
+            reject(error.message)
+          } else {
+            console.log("TOKENS_TRANSFER_FROM():Error", error.message)
+            reject(error)
+          }
+          
         }
     })
 } 
@@ -138,7 +145,7 @@ const TOKENS_TRANSFER_FROM = async (accountNumberFrom, accountNumberTo, totaltok
 const DEPLOY = async function(deployer) {
   // deploy a contract
   try {
-    var HelloWorld = artifacts.require("../../build/contracts/ERC20Coin");
+    var HelloWorld = artifacts.require("../../build/contracts/ERC20Coin.sol");
     await deployer.deploy(HelloWorld);
     //access information about your deployed contract instance
     const instance = await MyContract.deployed();
@@ -146,9 +153,57 @@ const DEPLOY = async function(deployer) {
   } catch (error) {
     console.log("DEPLOY ---- ", error)
   }
-
 }
-
+const GET_COUNT = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+        const { getCount } = instance.methods;
+        const getMessage =  await getCount().call();
+        console.log("getTextBlockchain()", getMessage)
+        resolve({
+          result: getMessage
+        })
+    } catch (error){
+        console.log("Register:Error", error)
+        reject(error.message)
+    }
+  })
+}
+  
+const INCREMENT = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const accounts = await web3.eth.getAccounts();
+      account = accounts[0];
+        const { increment } = instance.methods;
+        const setMessage = await increment().send({gas: 140000, from: account})
+        // console.log("increment()", setMessage)
+        resolve({
+          result: setMessage
+        })
+    } catch (error){
+        console.log("Register:Error", error)
+        reject(error.message)
+    }
+  })
+}
+const DECREMENT = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const accounts = await web3.eth.getAccounts();
+      account = accounts[0];
+        const { decrement } = instance.methods;
+        const setMessage = await decrement().send({gas: 140000, from: account})
+        // console.log("increment()", setMessage)
+        resolve({
+          result: setMessage
+        })
+    } catch (error){
+        console.log("Register:Error", error)
+        reject(error.message)
+    }
+  })
+}
 module.exports = {
     GET_TEXT,
     SET_TEXT,
@@ -157,4 +212,7 @@ module.exports = {
     ACCOUNT_TOKEN_BALANCE,
     TOKENS_TRANSFER_FROM,
     DEPLOY,
+    INCREMENT,
+    DECREMENT,
+    GET_COUNT,
 }
